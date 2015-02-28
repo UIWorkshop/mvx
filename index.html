@@ -82,6 +82,10 @@
         <script type="text/html" id="form-text">
             <input type="text" data-bind="attr: {name: name, placeholder: placeholder}, value: default_value" class="form-control">
         </script>
+        <script type="text/html" id="form-textinfo">
+            <p class="form-control-static" data-bind="text: default_value"></p>
+            <input type="hidden" data-bind="attr: {name: name}" />
+        </script>
         <script type="text/html" id="form-textarea">
             <textarea data-bind="attr: {name: name, placeholder: placeholder}, value: default_value" class="form-control"></textarea>
         </script>

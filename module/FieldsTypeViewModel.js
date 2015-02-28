@@ -12,6 +12,15 @@ function FieldsTypeViewModel () {
             required: true
         },
         {
+            name: 'textinfo',
+            label: 'TextInfo',
+            type: 'textinfo',
+            default_value: '',
+            placeholder: '',
+            reminder_message: '',
+            required: true
+        },
+        {
             name: 'textarea',
             label: 'Textarea',
             type: 'textarea',
