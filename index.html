@@ -78,6 +78,27 @@
                 </div>
             </div>
         </div>
+        <script type="text/html" id="form-text">
+            <input type="text" readonly="readonly" data-bind="attr: {name: name, placeholder: placeholder}, value: default_value" class="form-control">
+        </script>
+        <script type="text/html" id="form-radio">
+            <div data-bind="foreach: $parent.options">
+                <div class="radio">
+                    <label>
+                        <input type="radio" data-bind="attr: {name: $parent.name, checked: $parent.default_value == $data}, value: $data"><!--ko text: $data--><!--/ko-->
+                    </label>
+                </div>
+            </div>
+        </script>
+        <script type="text/html" id="form-checkbox">
+            <div data-bind="foreach: $parent.options">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" data-bind="attr: {name: $parent.name, checked: $parent.default_value.indexOf($data) >= 0}, value: $data"><!--ko text: $data--><!--/ko-->
+                    </label>
+                </div>
+            </div>
+        </script>
         <script src="bower_components/knockout/dist/knockout.debug.js"></script>
         <script src="bower_components/jquery/dist/jquery.min.js"></script>
         <script src="bower_components/underscore/underscore.min.js"></script>
