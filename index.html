@@ -11,7 +11,10 @@
                 <form action="" data-bind="foreach: form">
                     <div class="form-group">
                         <label data-bind="text: label"></label>
-                        <button class="btn btn-info btn-xs pull-right" data-bind="click: $parent.editField">Edit</button>
+                        <span class="pull-right">
+                            <button class="btn btn-danger btn-xs" data-bind="click: $parent.removeField">Remove</button>
+                            <button class="btn btn-info btn-xs" data-bind="click: $parent.editField">Edit</button>
+                        </span>
                         <div data-bind="template: {name: 'form-'+type, data: $data}">
                         </div>
                         <p class="help-block" data-bind="text: reminder_message"></p>
@@ -130,7 +133,8 @@
             	save: updateField
             });
             var form = new FieldsTypeViewModel({
-                edit: editField
+                edit: editField,
+                remove: removeField
             });
 
             ko.applyBindings(form, document.getElementById('form'));
@@ -140,17 +144,33 @@
     			modal.open(this);
             }
 
+            function removeField () {
+                _removeFieldBy(this.index);
+            }
+
             function updateField (config, type, options) {
-			    form.form.remove(function (field) {
-			        return field.index == config[0].value;
-			    });
-			    var newField = arr2obj(config);
-			    newField.type = type;
-			    newField.options = filterEmpty(options);
-			    form.form.push(newField);
-			    form.form.sort(function (prev, cur) {
-			        return prev.index > cur.index;
-			    });
+                _removeFieldBy(config[0].value);
+                var newField = arr2obj(config);
+                newField.type = type;
+                newField.options = filterEmpty(options);
+                form.form.push(newField);
+                _sortField();
+            }
+
+            function _removeFieldBy (index) {
+                var target;
+                form.form().forEach(function (field, order) {
+                    if (field.index == index) {
+                        target = order;
+                    }
+                });
+                form.form.splice(target, 1);
+            }
+
+            function _sortField () {
+                form.form.sort(function (prev, cur) {
+                    return prev.index > cur.index;
+                });
             }
 
             function arr2obj (arr) {

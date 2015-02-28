@@ -71,10 +71,21 @@ function FieldsTypeViewModel (conf) {
     ];
     self.form = ko.observableArray([]);
     self.fieldType = ko.observable();
+    var i = 0;
     self.addField = function () {
         var field = self.fieldType();
-        field.index = self.form().length;
-        self.form.push(field);
+        self.form.push({
+            index: i++,
+            name: field.name,
+            label: field.label,
+            type: field.type,
+            default_value: field.default_value,
+            placeholder: field.placeholder,
+            reminder_message: field.reminder_message,
+            required: field.required,
+            options: field.options
+        });
     };
     self.editField = conf.edit;
+    self.removeField = conf.remove;
 }
