@@ -58,6 +58,15 @@ function FieldsTypeViewModel () {
             reminder_message: '',
             required: true,
             options: ['option1', 'option2', 'option3']
+        },
+        {
+            name: 'file',
+            label: 'File',
+            type: 'textfile',
+            default_value: '',
+            placeholder: '',
+            reminder_message: 'Chose a file to upload',
+            required: true
         }
     ];
     self.form = ko.observableArray([]);
