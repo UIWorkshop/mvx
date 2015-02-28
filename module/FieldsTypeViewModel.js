@@ -30,6 +30,16 @@ function FieldsTypeViewModel () {
             reminder_message: '',
             required: true,
             options: ['checkbox1', 'checkbox2']
+        },
+        {
+            name: 'select',
+            label: 'Select',
+            type: 'select',
+            default_value: '',
+            placeholder: 'select one...',
+            reminder_message: '',
+            required: true,
+            options: ['option1', 'option2', 'option3']
         }
     ];
     self.form = ko.observableArray([]);

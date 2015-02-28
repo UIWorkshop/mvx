@@ -99,6 +99,14 @@
                 </div>
             </div>
         </script>
+        <script type="text/html" id="form-select">
+            <select class="form-control" data-bind="
+                options: options,
+                optionsCaption: placeholder,
+                value: default_value,
+                name: name
+            "></select>
+        </script>
         <script src="lib/knockout/dist/knockout.debug.js"></script>
         <script src="lib/jquery/dist/jquery.min.js"></script>
         <script src="lib/underscore/underscore.min.js"></script>
