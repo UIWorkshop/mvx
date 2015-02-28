@@ -6,6 +6,78 @@
     </head>
     <body>
     	<!-- Your HTML... -->
+        <div id="form" class="panel">
+            <div class="panel-body">
+                <form action="" data-bind="foreach: form">
+                    <div class="form-group" data-bind="click: $parent.editField">
+                        <label data-bind="text: label"></label>
+                        <div data-bind="template: {name: 'form-'+type, data: $data}">
+                        </div>
+                        <p class="help-block" data-bind="text: reminder_message"></p>
+                    </div>
+                </form>
+            </div>
+            <div class="panel-footer">
+                <div class="form-inline">
+                    <select class="form-control" name="type" id="type" 
+                        data-bind="
+                            options: fields,
+                            optionsCaption: 'Select type...',
+                            optionsText: 'label',
+                            value: fieldType    
+                        "
+                    ></select>
+                    <button class="btn btn-default" data-bind="
+                            enable: fieldType,
+                            click: addField
+                        "
+                    >Add</button>
+                </div>
+            </div>
+        </div>
+        <div id="modal" class="modal" data-bind="style: {display: title() !== '' ? 'block' : 'none', overflow: 'auto', background: 'rgba(11,11,11,0.3)'}">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-bind="click: close">
+                            <span arihidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" data-bind="text: title"></h4>
+                    </div>
+                    <div class="modal-body form-horizontal">
+                        <!-- ko foreach: config -->
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" data-bind="text: key"></label>
+                            <div class="col-sm-8" data-bind="if: typeof(value) === 'number'">
+                                <p class="form-control-static" data-bind="text: value"></p>
+                            </div>
+                            <div class="col-sm-8" data-bind="if: typeof(value) === 'string'">
+                                <input type="text" class="form-control" data-bind="value: value">
+                            </div>
+                            <div class="col-sm-8" data-bind="if: typeof(value) === 'boolean'">
+                                <label class="radio-inline">
+                                    <input type="radio" data-bind="attr:{name: key}, value: value, checked: value">true
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" data-bind="attr:{name: key}, value: value, checked: !value">false
+                                </label>
+                            </div>
+                        </div>
+                        <!-- /ko -->
+                        <div class="form-group" data-bind="if: type() != 'text'">
+                            <label class="col-sm-4 control-label">Options</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" rows="4" data-bind="arrayInline: options"></textarea>    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-bind="click: close">Close</button>
+                        <button type="button" class="btn btn-primary" data-bind="click: save">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <script src="bower_components/knockout/dist/knockout.debug.js"></script>
         <script src="bower_components/jquery/dist/jquery.min.js"></script>
         <script src="bower_components/underscore/underscore.min.js"></script>
