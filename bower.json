@@ -1,0 +1,22 @@
+{
+  "name": "mvx",
+  "version": "0.1.0",
+  "authors": [
+    "Tychio <code@tychio.net>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.2",
+    "jquery": "~1.11.2",
+    "underscore": "~1.8.2",
+    "knockout": "~3.3.0"
+  }
+}
