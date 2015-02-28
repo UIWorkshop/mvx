@@ -129,14 +129,16 @@
             var modal = new ModalViewModel({
             	save: updateField
             });
-            var form = new FieldsTypeViewModel();
-
-            form.editField = function () {
-    			modal.open(this);
-            };
+            var form = new FieldsTypeViewModel({
+                edit: editField
+            });
 
             ko.applyBindings(form, document.getElementById('form'));
             ko.applyBindings(modal, document.getElementById('modal'));
+
+            function editField () {
+    			modal.open(this);
+            }
 
             function updateField (config, type, options) {
 			    form.form.remove(function (field) {

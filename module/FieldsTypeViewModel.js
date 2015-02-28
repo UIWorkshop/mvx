@@ -1,4 +1,4 @@
-function FieldsTypeViewModel () {
+function FieldsTypeViewModel (conf) {
     var self = this;
 
     self.fields = [
@@ -76,6 +76,5 @@ function FieldsTypeViewModel () {
         field.index = self.form().length;
         self.form.push(field);
     };
-    self.editField = function () {
-    };
+    self.editField = conf.edit;
 }
