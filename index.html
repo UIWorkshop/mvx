@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>MVX - Knockout - Form Builder</title>
-        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css">
     </head>
     <body>
     	<!-- Your HTML... -->
@@ -102,11 +102,53 @@
         <script src="lib/knockout/dist/knockout.debug.js"></script>
         <script src="lib/jquery/dist/jquery.min.js"></script>
         <script src="lib/underscore/underscore.min.js"></script>
-        <script src="lib/FieldsTypeViewModel.js"></script>
-        <script src="lib/ModalViewModel.js"></script>
-        <script src="lib/CustomBinder.js"></script>
+        <script src="module/FieldsTypeViewModel.js"></script>
+        <script src="module/ModalViewModel.js"></script>
+        <script src="module/CustomBinder.js"></script>
         <script>
         	// Your JS...
+            var modal = new ModalViewModel({
+            	save: updateField
+            });
+            var form = new FieldsTypeViewModel();
+
+            form.editField = function () {
+    			modal.open(this);
+            };
+
+            ko.applyBindings(form, document.getElementById('form'));
+            ko.applyBindings(modal, document.getElementById('modal'));
+
+            function updateField (config, type, options) {
+			    form.form.remove(function (field) {
+			        return field.index == config[0].value;
+			    });
+			    var newField = arr2obj(config);
+			    newField.type = type;
+			    newField.options = filterEmpty(options);
+			    form.form.push(newField);
+			    form.form.sort(function (prev, cur) {
+			        return prev.index > cur.index;
+			    });
+            }
+
+            function arr2obj (arr) {
+                var obj = {};
+                arr.forEach(function (kv, index) {
+                    obj[kv.key] = kv.value;
+                });
+                return obj;
+            }
+
+            function filterEmpty (arr) {
+                var noEmptyArr = [];
+                arr.forEach(function (value) {
+                    if (!/^\s*$/.test(value)) {
+                        noEmptyArr.push(value);
+                    }
+                });
+                return noEmptyArr;
+	        }
         </script>
     </body>
 </html>
