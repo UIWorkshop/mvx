@@ -9,8 +9,9 @@
         <div id="form" class="panel">
             <div class="panel-body">
                 <form action="" data-bind="foreach: form">
-                    <div class="form-group" data-bind="click: $parent.editField">
+                    <div class="form-group">
                         <label data-bind="text: label"></label>
+                        <button class="btn btn-info btn-xs pull-right" data-bind="click: $parent.editField">Edit</button>
                         <div data-bind="template: {name: 'form-'+type, data: $data}">
                         </div>
                         <p class="help-block" data-bind="text: reminder_message"></p>
@@ -64,7 +65,7 @@
                             </div>
                         </div>
                         <!-- /ko -->
-                        <div class="form-group" data-bind="if: type() != 'text'">
+                        <div class="form-group" data-bind="if: type().indexOf('text') < 0">
                             <label class="col-sm-4 control-label">Options</label>
                             <div class="col-sm-8">
                                 <textarea class="form-control" rows="4" data-bind="arrayInline: options"></textarea>    
@@ -79,7 +80,10 @@
             </div>
         </div>
         <script type="text/html" id="form-text">
-            <input type="text" readonly="readonly" data-bind="attr: {name: name, placeholder: placeholder}, value: default_value" class="form-control">
+            <input type="text" data-bind="attr: {name: name, placeholder: placeholder}, value: default_value" class="form-control">
+        </script>
+        <script type="text/html" id="form-textarea">
+            <textarea data-bind="attr: {name: name, placeholder: placeholder}, value: default_value" class="form-control"></textarea>
         </script>
         <script type="text/html" id="form-radio">
             <div data-bind="foreach: $parent.options">

@@ -12,6 +12,15 @@ function FieldsTypeViewModel () {
             required: true
         },
         {
+            name: 'textarea',
+            label: 'Textarea',
+            type: 'textarea',
+            default_value: '',
+            placeholder: '',
+            reminder_message: '',
+            required: true
+        },
+        {
             name: 'radio',
             label: 'Radio',
             type: 'radio',
