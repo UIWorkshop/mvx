@@ -70,6 +70,9 @@ function FieldsTypeViewModel (conf) {
         }
     ];
     self.form = ko.observableArray([]);
+    self.preview = ko.computed(function () {
+        return JSON.stringify(self.form(), null, 4);
+    });
     self.fieldType = ko.observable();
     var i = 0;
     self.addField = function () {
