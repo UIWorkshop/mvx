@@ -1,7 +1,7 @@
 function ModalViewModel (conf) {
     var self = this;
 
-    self.title = ko.observable('');
+    self.title = ko.observable('').extend({format: 'upper'});
     self.type = ko.observable('');
     self.options = ko.observable([]);
     self.config = ko.observableArray([
