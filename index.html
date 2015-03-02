@@ -51,7 +51,7 @@
                     <div class="modal-body form-horizontal">
                         <!-- ko foreach: config -->
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" data-bind="text: key"></label>
+                            <label class="col-sm-4 control-label" data-bind="text: $parent.config.punctuate(key)"></label>
                             <div class="col-sm-8" data-bind="if: typeof(value) === 'number'">
                                 <p class="form-control-static" data-bind="text: value"></p>
                             </div>
@@ -124,10 +124,11 @@
         <script src="lib/knockout/dist/knockout.debug.js"></script>
         <script src="lib/jquery/dist/jquery.min.js"></script>
         <script src="lib/underscore/underscore-min.js"></script>
+        <script src="module/CustomFunction.js"></script>
+        <script src="module/CustomBinder.js"></script>
         <script src="module/Extender.js"></script>
         <script src="module/FieldsTypeViewModel.js"></script>
         <script src="module/ModalViewModel.js"></script>
-        <script src="module/CustomBinder.js"></script>
         <script>
         	// Your JS...
             var modal = new ModalViewModel({
